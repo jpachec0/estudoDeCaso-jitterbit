@@ -6,14 +6,14 @@ const orderController = require("../controller/orderController");
  * @swagger
  * tags:
  *   name: Orders
- *   description: API de gerenciamento de pedidos
+ *   description: Order management API
  */
 
 /**
  * @swagger
  * /order:
  *   post:
- *     summary: Criar um novo pedido
+ *     summary: Create a new order
  *     tags: [Orders]
  *     requestBody:
  *       required: true
@@ -47,7 +47,7 @@ const orderController = require("../controller/orderController");
  *                       example: 50
  *     responses:
  *       201:
- *         description: Pedido criado com sucesso
+ *         description: Order created successfully
  */
 router.post("/order", orderController.createOrder);
 
@@ -55,11 +55,11 @@ router.post("/order", orderController.createOrder);
  * @swagger
  * /order/list:
  *   get:
- *     summary: Listar todos os pedidos
+ *     summary: List all orders
  *     tags: [Orders]
  *     responses:
  *       200:
- *         description: Lista de pedidos
+ *         description: List of orders
  */
 router.get("/order/list", orderController.listOrders);
 
@@ -67,7 +67,7 @@ router.get("/order/list", orderController.listOrders);
  * @swagger
  * /order/{orderId}:
  *   get:
- *     summary: Buscar um pedido pelo ID
+ *     summary: Get order by ID
  *     tags: [Orders]
  *     parameters:
  *       - in: path
@@ -78,9 +78,9 @@ router.get("/order/list", orderController.listOrders);
  *         example: v10089016vdb
  *     responses:
  *       200:
- *         description: Pedido encontrado
+ *         description: Order found
  *       404:
- *         description: Pedido não encontrado
+ *         description: Order not found
  */
 router.get("/order/:orderId", orderController.getOrder);
 
@@ -88,7 +88,7 @@ router.get("/order/:orderId", orderController.getOrder);
  * @swagger
  * /order/{orderId}:
  *   put:
- *     summary: Atualizar um pedido
+ *     summary: Update an order
  *     tags: [Orders]
  *     parameters:
  *       - in: path
@@ -121,9 +121,9 @@ router.get("/order/:orderId", orderController.getOrder);
  *                       type: number
  *     responses:
  *       200:
- *         description: Pedido atualizado
+ *         description: Order updated successfully
  *       404:
- *         description: Pedido não encontrado
+ *         description: Order not found
  */
 router.put("/order/:orderId", orderController.updateOrder);
 
@@ -131,7 +131,7 @@ router.put("/order/:orderId", orderController.updateOrder);
  * @swagger
  * /order/{orderId}:
  *   delete:
- *     summary: Deletar um pedido
+ *     summary: Delete an order
  *     tags: [Orders]
  *     parameters:
  *       - in: path
@@ -142,9 +142,9 @@ router.put("/order/:orderId", orderController.updateOrder);
  *         example: v10089016vdb
  *     responses:
  *       200:
- *         description: Pedido deletado
+ *         description: Order deleted successfully
  *       404:
- *         description: Pedido não encontrado
+ *         description: Order not found
  */
 router.delete("/order/:orderId", orderController.deleteOrder);
 
