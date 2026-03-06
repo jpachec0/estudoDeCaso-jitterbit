@@ -140,3 +140,18 @@ exports.updateOrder = async (orderId, data) => {
   return true;
 };
 
+exports.deleteOrder = async (orderId) => {
+
+  await db.query("DELETE FROM items WHERE orderId = ?", [orderId]);
+
+  const [result] = await db.query(
+    "DELETE FROM orders WHERE orderId = ?",
+    [orderId]
+  );
+
+  if (result.affectedRows === 0) {
+    return false;
+  }
+
+  return true;
+};
