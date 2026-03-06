@@ -3,6 +3,11 @@ const router = express.Router();
 const orderController = require("../controller/orderController");
 
 /**
+ * Rotas responsáveis pelo gerenciamento de pedidos.
+ * A documentação detalhada das rotas é feita via Swagger.
+ */
+
+/**
  * @swagger
  * tags:
  *   name: Orders

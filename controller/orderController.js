@@ -1,5 +1,8 @@
 const orderService = require("../service/orderService");
 
+/**
+ * Cria um novo pedido.
+ */
 exports.createOrder = async (req, res) => {
   try {
     const result = await orderService.createOrder(req.body);
@@ -9,6 +12,9 @@ exports.createOrder = async (req, res) => {
   }
 };
 
+/**
+ * Busca um pedido pelo ID.
+ */
 exports.getOrder = async (req, res) => {
   try {
 
@@ -29,6 +35,9 @@ exports.getOrder = async (req, res) => {
   }
 };
 
+/**
+ * Lista todos os pedidos.
+ */
 exports.listOrders = async (req, res) => {
   try {
 
@@ -41,6 +50,9 @@ exports.listOrders = async (req, res) => {
   }
 };
 
+/**
+ * Atualiza um pedido existente.
+ */
 exports.updateOrder = async (req, res) => {
   try {
 
@@ -61,6 +73,9 @@ exports.updateOrder = async (req, res) => {
   }
 };
 
+/**
+ * Remove um pedido pelo ID.
+ */
 exports.deleteOrder = async (req, res) => {
   try {
 

@@ -1,5 +1,9 @@
 const swaggerJsdoc = require("swagger-jsdoc");
 
+/**
+ * Configuração do Swagger para documentação da API.
+ * Lê as anotações presentes nos arquivos de rota.
+ */
 const options = {
   definition: {
     openapi: "3.0.0",
