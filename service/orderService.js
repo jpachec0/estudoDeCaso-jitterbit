@@ -83,3 +83,32 @@ exports.getOrder = async (orderId) => {
 
 };
 
+exports.listOrders = async () => {
+
+  const [orders] = await db.query("SELECT * FROM orders");
+
+  const result = [];
+
+  for (const order of orders) {
+
+    const [items] = await db.query(
+      "SELECT productId, quantity, price FROM items WHERE orderId = ?",
+      [order.orderId]
+    );
+
+    result.push({
+      numeroPedido: order.orderId,
+      valorTotal: order.value,
+      dataCriacao: order.creationDate,
+      items: items.map(item => ({
+        idItem: item.productId,
+        quantidadeItem: item.quantity,
+        valorItem: item.price
+      }))
+    });
+
+  }
+
+  return result;
+};
+

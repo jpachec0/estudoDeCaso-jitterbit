@@ -28,3 +28,15 @@ exports.getOrder = async (req, res) => {
 
   }
 };
+
+exports.listOrders = async (req, res) => {
+  try {
+
+    const orders = await orderService.listOrders();
+
+    res.json(orders);
+
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
