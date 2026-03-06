@@ -2,6 +2,9 @@
 
 API simples em Node.js + Express + MySQL para gerenciamento de pedidos.
 
+Documentação swagger disponível em:
+http://localhost:3000/docs
+
 ## Requisitos
 
 * Node.js
