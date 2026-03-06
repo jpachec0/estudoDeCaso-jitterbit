@@ -8,3 +8,23 @@ exports.createOrder = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+exports.getOrder = async (req, res) => {
+  try {
+
+    const orderId = req.params.orderId;
+
+    const order = await orderService.getOrder(orderId);
+
+    if (!order) {
+      return res.status(404).json({ message: "Order not found" });
+    }
+
+    res.json(order);
+
+  } catch (error) {
+
+    res.status(500).json({ error: error.message });
+
+  }
+};

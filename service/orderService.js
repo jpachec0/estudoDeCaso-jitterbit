@@ -47,4 +47,39 @@ exports.createOrder = async (data) => {
     conn.release();
 
   }
+
+  
+
 };
+
+exports.getOrder = async (orderId) => {
+
+  const [orders] = await db.query(
+    "SELECT * FROM orders WHERE orderId = ?",
+    [orderId]
+  );
+
+  if (orders.length === 0) {
+    return null;
+  }
+
+  const order = orders[0];
+
+  const [items] = await db.query(
+    "SELECT productId, quantity, price FROM items WHERE orderId = ?",
+    [orderId]
+  );
+
+  return {
+    numeroPedido: order.orderId,
+    valorTotal: order.value,
+    dataCriacao: order.creationDate,
+    items: items.map(item => ({
+      idItem: item.productId,
+      quantidadeItem: item.quantity,
+      valorItem: item.price
+    }))
+  };
+
+};
+
