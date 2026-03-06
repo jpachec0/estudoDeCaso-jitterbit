@@ -112,3 +112,31 @@ exports.listOrders = async () => {
   return result;
 };
 
+exports.updateOrder = async (orderId, data) => {
+
+  const [existing] = await db.query(
+    "SELECT orderId FROM orders WHERE orderId = ?",
+    [orderId]
+  );
+
+  if (existing.length === 0) {
+    return false;
+  }
+
+  await db.query(
+    "UPDATE orders SET value = ?, creationDate = ? WHERE orderId = ?",
+    [data.valorTotal, data.dataCriacao, orderId]
+  );
+
+  await db.query("DELETE FROM items WHERE orderId = ?", [orderId]);
+
+  for (const item of data.items) {
+    await db.query(
+      "INSERT INTO items (orderId, productId, quantity, price) VALUES (?, ?, ?, ?)",
+      [orderId, item.idItem, item.quantidadeItem, item.valorItem]
+    );
+  }
+
+  return true;
+};
+

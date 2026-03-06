@@ -40,3 +40,23 @@ exports.listOrders = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+exports.updateOrder = async (req, res) => {
+  try {
+
+    const orderId = req.params.orderId;
+
+    const updated = await orderService.updateOrder(orderId, req.body);
+
+    if (!updated) {
+      return res.status(404).json({ message: "Order not found" });
+    }
+
+    res.json({
+      message: "Order updated successfully"
+    });
+
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
