@@ -108,6 +108,7 @@ router.get("/order/:orderId", orderController.getOrder);
  *                 type: number
  *               dataCriacao:
  *                 type: string
+ *                 example: 2026-03-06
  *               items:
  *                 type: array
  *                 items:
